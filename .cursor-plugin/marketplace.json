@@ -1,0 +1,23 @@
+{
+  "name": "dinglan",
+  "owner": {
+    "name": "DingLan Technology"
+  },
+  "metadata": {
+    "description": "DingLan团队研发标准 marketplace。"
+  },
+  "plugins": [
+    {
+      "name": "engineering-standards",
+      "source": "./",
+      "version": "1.0.0",
+      "description": "全套研发标准：命名规范 + MySQL 设计 + NestJS 脚手架，一次安装拿全部。",
+      "category": "standards",
+      "tags": [
+        "standards",
+        "conventions",
+        "team"
+      ]
+    }
+  ]
+}
