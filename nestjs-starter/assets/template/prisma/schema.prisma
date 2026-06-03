@@ -1,0 +1,30 @@
+// Prisma schema
+// https://pris.ly/d/prisma-schema
+//
+// 每次修改此文件后，执行:
+//   pnpm prisma migrate dev --name <描述性名字>
+// 不要手动改数据库表结构。
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+// 用户表
+model User {
+  id        Int      @id @default(autoincrement())
+  username  String   @db.VarChar(50)
+  // phone 作为唯一登录标识
+  phone     String   @unique @db.VarChar(20)
+  // 存 argon2 哈希，不存明文。argon2 哈希串长度约 96，给 255 留足余量
+  password  String   @db.VarChar(255)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([username])
+  @@map("users")
+}
