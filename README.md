@@ -31,11 +31,7 @@
 
 - `@dinglan` 是 marketplace 名（见 [`.claude-plugin/marketplace.json`](./.claude-plugin/marketplace.json) 的 `name`）。
 - 安装后所有 skill 会**自动按需触发**，正常写代码即可，不用手动调。
-- 需要手动调用时，用完整命令（带命名空间 `engineering-standards:`）：
-  - `/engineering-standards:naming-conventions`
-  - `/engineering-standards:mysql-design`
-  - `/engineering-standards:nestjs-starter`
-- 如果是**安装前就开着的会话**，`/` 菜单不会自动刷新——先 `/reload-plugins` 或重启 Claude Code，新装的 skill 才会进补全列表。
+- 需要手动调用时：`/naming-conventions`、`/mysql-design`、`/nestjs-starter`。
 
 > ⚠️ `add` 必须用 `owner/repo`（git）写法，**不能**直接喂 `marketplace.json` 的 URL——相对路径 source 在 URL 方式下无法解析。
 
