@@ -28,7 +28,7 @@ pnpm prisma migrate deploy  # 只 apply 已有迁移，不生成新的
 
 ## Schema 约定
 
-- 表名：Prisma model 用 PascalCase（`User`），用 `@@map("users")` 映射到数据库 snake_case 复数
+- 表名 / 列名：一律**驼峰**——表 PascalCase（`User`）、列 camelCase（`createdAt`），默认沿用 model / field 名，也可用 `@@map` / `@map` 改名但须保持驼峰，**禁 snake_case**。完整约定见 `mysql-design` 规范
 - 字段类型要明确：`String` 必须配 `@db.VarChar(N)`，不要让 Prisma 默认成 `VARCHAR(191)` 之类猜测值
 - 时间字段统一 `createdAt` / `updatedAt`，配 `@default(now())` / `@updatedAt`
 - 需要检索的字段加索引：`@@index([fieldName])`

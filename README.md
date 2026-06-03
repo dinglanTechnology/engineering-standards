@@ -12,9 +12,10 @@
 | 名称 | 类型 | 适用范围 | 状态 |
 |---|---|---|---|
 | [naming-conventions](./naming-conventions/) | 规范 | Node.js (JS/TS) 命名规范 | ✅ 可用 |
+| [mysql-design](./mysql-design/) | 规范 | MySQL 数据库设计规范（Prisma-first） | ✅ 可用 |
 | [nestjs-starter](./nestjs-starter/) | 脚手架 | NestJS 11 后端项目（TS + Prisma + MySQL，生产级基础设施） | ✅ 可用 |
 
-> 规划中：MySQL 设计规范、API 设计规范、Git commit 格式、错误处理 / 日志规范……欢迎补充。
+> 规划中：API 设计规范、Git commit 格式、错误处理 / 日志规范……欢迎补充。
 
 ---
 

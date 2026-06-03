@@ -16,7 +16,7 @@ datasource db {
 
 // 用户表
 model User {
-  id        Int      @id @default(autoincrement())
+  id        Int      @id @default(autoincrement()) @db.UnsignedInt
   username  String   @db.VarChar(50)
   // phone 作为唯一登录标识
   phone     String   @unique @db.VarChar(20)
@@ -26,5 +26,4 @@ model User {
   updatedAt DateTime @updatedAt
 
   @@index([username])
-  @@map("users")
 }
