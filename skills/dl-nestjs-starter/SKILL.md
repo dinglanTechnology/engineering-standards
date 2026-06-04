@@ -1,5 +1,5 @@
 ---
-name: nestjs-starter
+name: dl-nestjs-starter
 description: 团队内部的 NestJS 后端项目规范与脚手架。使用这个 skill 当用户要搭建一个新的 NestJS 项目、添加生产级的基础设施（日志/异常过滤器/响应拦截器/Swagger/JWT 认证/Prisma/Docker）、审查现有 NestJS 项目的代码规范，或需要一套符合团队统一风格的 NestJS 模板时。技术栈是 NestJS 11 + TypeScript + Prisma 6 + MySQL + argon2 + Winston + pnpm。即使用户没有明确说出 "脚手架" 或 "模板" 这类词，只要他们在做 NestJS 后端相关的搭建或规范化工作，就应该触发这个 skill。
 ---
 

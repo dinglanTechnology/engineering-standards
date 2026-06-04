@@ -11,10 +11,10 @@
 
 | 名称 | 类型 | 适用范围 | 状态 |
 |---|---|---|---|
-| `naming-conventions` | 规范 | Node.js (JS/TS) 命名规范 | ✅ |
-| `mysql-design` | 规范 | MySQL 数据库设计规范（Prisma-first） | ✅ |
-| `nestjs-starter` | 脚手架 | NestJS 11 后端项目（TS + Prisma + MySQL，生产级基础设施） | ✅ |
-| `work-daily-report` | 工作流 | 根据 git 提交与 Codex/Claude 记录生成工作日报 | ✅ |
+| `dl-naming-conventions` | 规范 | Node.js (JS/TS) 命名规范 | ✅ |
+| `dl-mysql-design` | 规范 | MySQL 数据库设计规范（Prisma-first） | ✅ |
+| `dl-nestjs-starter` | 脚手架 | NestJS 11 后端项目（TS + Prisma + MySQL，生产级基础设施） | ✅ |
+| `dl-work-daily-report` | 工作流 | 根据 git 提交与 Codex/Claude 记录生成工作日报 | ✅ |
 
 > 规划中：API 设计规范、Git commit 格式、错误处理 / 日志规范……欢迎补充。这些都会作为新 skill 加进**同一个 plugin**，用户一次安装、自动拿到后续新增。
 
@@ -32,7 +32,7 @@
 
 - `@dinglan` 是 marketplace 名（见 [`.claude-plugin/marketplace.json`](./.claude-plugin/marketplace.json) 的 `name`）。
 - 安装后所有 skill 会**自动按需触发**，正常写代码即可，不用手动调。
-- 需要手动调用时：`/naming-conventions`、`/mysql-design`、`/nestjs-starter`。
+- 需要手动调用时：`/dl-naming-conventions`、`/dl-mysql-design`、`/dl-nestjs-starter`、`/dl-work-daily-report`。
 
 > ⚠️ `add` 必须用 `owner/repo`（git）写法，**不能**直接喂 `marketplace.json` 的 URL——相对路径 source 在 URL 方式下无法解析。
 
@@ -59,7 +59,7 @@ Cursor 用同一套 plugin / skill 规范，清单放在 [`​.cursor-plugin/`](
 
 ### claude.ai（网页 / 桌面 App）
 
-网页端不支持 marketplace，走上传：把单个 skill 目录（如 `skills/mysql-design/`）打包成 `.skill`（即该目录的 zip），在 **Settings → Capabilities → Skills → Upload skill** 上传。需要打包时让 Claude 帮你做即可。
+网页端不支持 marketplace，走上传：把单个 skill 目录（如 `skills/dl-mysql-design/`）打包成 `.skill`（即该目录的 zip），在 **Settings → Capabilities → Skills → Upload skill** 上传。需要打包时让 Claude 帮你做即可。
 
 ---
 
@@ -97,7 +97,7 @@ plugin **钉了 `version`（语义化版本）**。这意味着：
 - **长对话**：聊了几十轮之后，Claude 注意力会衰减——重要任务建议**开新对话**
 - **极简任务**："改一下这个变量名" 这种一句话任务可能跳过 skill
 
-想确认是否生效：直接问 Claude "你刚才用了 naming-conventions 这个 skill 吗？"
+想确认是否生效：直接问 Claude "你刚才用了 dl-naming-conventions 这个 skill 吗？"
 
 ---
 
@@ -113,13 +113,13 @@ plugin **钉了 `version`（语义化版本）**。这意味着：
 │   ├── plugin.json
 │   └── marketplace.json
 └── skills/                       ← 两边共用同一份；一个 skill = 一个目录
-    ├── naming-conventions/
+    ├── dl-naming-conventions/
     │   └── SKILL.md
-    ├── mysql-design/
+    ├── dl-mysql-design/
     │   └── SKILL.md
-    ├── work-daily-report/
+    ├── dl-work-daily-report/
     │   └── SKILL.md
-    └── nestjs-starter/
+    └── dl-nestjs-starter/
         ├── SKILL.md
         ├── references/           ← 分主题参考文档（按需加载）
         └── assets/               ← 可直接复制的模板文件
@@ -151,4 +151,4 @@ plugin **钉了 `version`（语义化版本）**。这意味着：
 - 这个 skill**适用于什么场景**（具体关键词，比如"写 SQL"、"搭 NestJS 项目"）
 - **强调"必须使用"**，即使用户没有明确提到"规范""脚手架"这类词
 
-可参考 [`naming-conventions`](./skills/naming-conventions/SKILL.md)、[`nestjs-starter`](./skills/nestjs-starter/SKILL.md) 的 description 写法。
+可参考 [`dl-naming-conventions`](./skills/dl-naming-conventions/SKILL.md)、[`dl-nestjs-starter`](./skills/dl-nestjs-starter/SKILL.md) 的 description 写法。

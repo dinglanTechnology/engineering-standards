@@ -1,5 +1,5 @@
 ---
-name: naming-conventions
+name: dl-naming-conventions
 description: 团队约定的 Node.js（JavaScript / TypeScript）代码命名规范。**任何时候**为本团队/项目编写、审查、重构 JavaScript 或 TypeScript 代码时都必须使用，包括但不限于：声明变量/常量/布尔值、定义函数或方法、命名类与接口、创建源代码文件。即使用户没有明确提到"命名规范"或"代码规范"，只要在写或改 JS/TS 代码就要套用这套规则。
 ---
 

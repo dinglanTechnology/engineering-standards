@@ -1,11 +1,11 @@
 ---
-name: mysql-design
-description: 团队约定的 MySQL 数据库设计规范（Prisma-first），覆盖库/表/字段/索引命名、主键策略、字段类型选型、字符集、索引设计、外键、软删除、审计字段与建表模板。**任何时候**设计 MySQL 表结构、写或改 Prisma schema、新建库表、加字段、加索引、做 DDL/schema Code Review 时都必须使用。团队统一用 Prisma 管理 schema，物理命名一律驼峰、禁 snake_case：表名 PascalCase、列名 camelCase（小驼峰），默认沿用 model/field 名，也可用 @@map/@map 改名但须保持驼峰。即使用户没有明确提到"数据库规范"或"建表规范"，只要在设计或修改 MySQL 表结构 / Prisma model 就要套用这套规则。具体的 Prisma 用法（事务、分页、N+1）见 nestjs-starter 的 prisma-guide。
+name: dl-mysql-design
+description: 团队约定的 MySQL 数据库设计规范（Prisma-first），覆盖库/表/字段/索引命名、主键策略、字段类型选型、字符集、索引设计、外键、软删除、审计字段与建表模板。**任何时候**设计 MySQL 表结构、写或改 Prisma schema、新建库表、加字段、加索引、做 DDL/schema Code Review 时都必须使用。团队统一用 Prisma 管理 schema，物理命名一律驼峰、禁 snake_case：表名 PascalCase、列名 camelCase（小驼峰），默认沿用 model/field 名，也可用 @@map/@map 改名但须保持驼峰。即使用户没有明确提到"数据库规范"或"建表规范"，只要在设计或修改 MySQL 表结构 / Prisma model 就要套用这套规则。具体的 Prisma 用法（事务、分页、N+1）见 dl-nestjs-starter 的 prisma-guide。
 ---
 
 # MySQL 数据库设计规范（Prisma-first）
 
-本规范约束 **MySQL 8.0+** 的库表设计。团队统一用 **Prisma** 管理 schema，**物理表名 / 列名一律驼峰**（表 PascalCase、列 camelCase）：默认直接采用 model / field 名，也可以用 `@@map` / `@map` 改名，但**改后仍须保持驼峰，禁止 snake_case 映射**。本规范管「表在数据库里长什么样」，ORM 操作细节（事务、分页、N+1）见 `nestjs-starter` 的 `references/prisma-guide.md`。
+本规范约束 **MySQL 8.0+** 的库表设计。团队统一用 **Prisma** 管理 schema，**物理表名 / 列名一律驼峰**（表 PascalCase、列 camelCase）：默认直接采用 model / field 名，也可以用 `@@map` / `@map` 改名，但**改后仍须保持驼峰，禁止 snake_case 映射**。本规范管「表在数据库里长什么样」，ORM 操作细节（事务、分页、N+1）见 `dl-nestjs-starter` 的 `references/prisma-guide.md`。
 
 设计一张表前按这个顺序过一遍：主键 → 业务字段（类型 + 是否可空 + 注释）→ 审计字段 → 软删除（按需）→ 索引 → 外键（按需）。
 

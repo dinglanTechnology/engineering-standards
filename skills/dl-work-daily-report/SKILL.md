@@ -1,5 +1,5 @@
 ---
-name: work-daily-report
+name: dl-work-daily-report
 description: 根据当天或指定时间范围内的 git 提交记录，以及 Codex、Claude 聊天日志，生成简短工作日报；按实际参与的项目、系统或业务线分组，每个项目输出 1-5 条。当用户要求“生成日报”“根据今天提交写日报”“根据 Codex/Claude 记录写日报”“按项目/系统分组写日报”时必须使用。
 ---
 
