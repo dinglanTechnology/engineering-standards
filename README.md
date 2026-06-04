@@ -14,6 +14,7 @@
 | `naming-conventions` | 规范 | Node.js (JS/TS) 命名规范 | ✅ |
 | `mysql-design` | 规范 | MySQL 数据库设计规范（Prisma-first） | ✅ |
 | `nestjs-starter` | 脚手架 | NestJS 11 后端项目（TS + Prisma + MySQL，生产级基础设施） | ✅ |
+| `work-daily-report` | 工作流 | 根据 git 提交与 Codex/Claude 记录生成工作日报 | ✅ |
 
 > 规划中：API 设计规范、Git commit 格式、错误处理 / 日志规范……欢迎补充。这些都会作为新 skill 加进**同一个 plugin**，用户一次安装、自动拿到后续新增。
 
@@ -115,6 +116,8 @@ plugin **钉了 `version`（语义化版本）**。这意味着：
     ├── naming-conventions/
     │   └── SKILL.md
     ├── mysql-design/
+    │   └── SKILL.md
+    ├── work-daily-report/
     │   └── SKILL.md
     └── nestjs-starter/
         ├── SKILL.md

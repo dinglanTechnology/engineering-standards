@@ -1,8 +1,8 @@
 {
   "name": "engineering-standards",
   "displayName": "DingLan研发标准",
-  "description": "DingLan团队研发标准合集：Node.js 命名规范、MySQL 设计规范（Prisma-first）、NestJS 11 后端脚手架。写代码或搭项目时自动按团队规范执行。",
-  "version": "1.0.0",
+  "description": "DingLan团队研发标准合集：Node.js 命名规范、MySQL 设计规范（Prisma-first）、NestJS 11 后端脚手架、工作日报生成。写代码、搭项目或整理日报时自动按团队规范执行。",
+  "version": "1.1.0",
   "author": {
     "name": "DingLan Technology"
   },
@@ -16,7 +16,8 @@
     "mysql",
     "prisma",
     "nestjs",
-    "scaffold"
+    "scaffold",
+    "daily-report"
   ],
   "skills": "./skills/"
 }
