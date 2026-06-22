@@ -108,7 +108,7 @@ deletedAt DateTime?   // 软删除时间，NULL = 未删除
 | 一般整数（数量、排序、时长） | `Int` | `INT`，如 `order Int @default(0)` |
 | 稳定的领域枚举状态 | `enum` + `EnumType` | MySQL `ENUM`。适合取值稳定、跨流程复用的，如 `ProjectStatus`、`HistoryType`、`PricingCategory` |
 | 流程性 / provider 驱动的状态 | `String` + 注释 | `VARCHAR`。适合频繁变动、由第三方决定的，如 `status String // GENERATING / SUCCESS / FAILED`、`kind` |
-| 布尔 | `Boolean` | `TINYINT(1)`，列名 `is`/`has` 前缀优先 |
+| 布尔 | `Boolean`（优先使用 Prisma 的 `Boolean`，MySQL 映射为 `TINYINT(1)` / `0/1`） | 列名 `is`/`has` 前缀优先 |
 | 金额 / 精确小数 | `Decimal @db.Decimal(M,D)` | 余额 `(12,4)`、计费单价 `(12,6)`、展示金额 `(12,2)`。**严禁 `Float`/`Double` 存金额** |
 | 评分 / 非金额浮点 | `Float?` | `DOUBLE`，仅用于不要求精确的分值（如 `score Float?`） |
 | 短字符串 | `String @db.VarChar(N)` | N 按业务实际取，见下表 |
