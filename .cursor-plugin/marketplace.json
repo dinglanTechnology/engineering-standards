@@ -10,7 +10,7 @@
     {
       "name": "engineering-standards",
       "source": "./",
-      "version": "1.1.0",
+      "version": "1.2.0",
       "description": "全套研发标准：命名规范 + MySQL 设计 + NestJS 脚手架 + 工作日报，一次安装拿全部。",
       "category": "standards",
       "tags": [

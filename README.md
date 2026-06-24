@@ -15,8 +15,9 @@
 | `dl-mysql-design` | 规范 | MySQL 数据库设计规范（Prisma-first） | ✅ |
 | `dl-nestjs-starter` | 脚手架 | NestJS 11 后端项目（TS + Prisma + MySQL，生产级基础设施） | ✅ |
 | `dl-work-daily-report` | 工作流 | 根据 git 提交与 Codex/Claude 记录生成工作日报 | ✅ |
+| `dl-api-doc-for-frontend` | 工作流 | 给前端 AI 看的接口联调文档生成器（NestJS 项目通用） | ✅ |
 
-> 规划中：API 设计规范、Git commit 格式、错误处理 / 日志规范……欢迎补充。这些都会作为新 skill 加进**同一个 plugin**，用户一次安装、自动拿到后续新增。
+> 规划中：Git commit 格式、错误处理 / 日志规范……欢迎补充。这些都会作为新 skill 加进**同一个 plugin**，用户一次安装、自动拿到后续新增。
 
 ---
 
@@ -32,7 +33,7 @@
 
 - `@dinglan` 是 marketplace 名（见 [`.claude-plugin/marketplace.json`](./.claude-plugin/marketplace.json) 的 `name`）。
 - 安装后所有 skill 会**自动按需触发**，正常写代码即可，不用手动调。
-- 需要手动调用时：`/dl-naming-conventions`、`/dl-mysql-design`、`/dl-nestjs-starter`、`/dl-work-daily-report`。
+- 需要手动调用时：`/dl-naming-conventions`、`/dl-mysql-design`、`/dl-nestjs-starter`、`/dl-work-daily-report`、`/dl-api-doc-for-frontend`。
 
 > ⚠️ `add` 必须用 `owner/repo`（git）写法，**不能**直接喂 `marketplace.json` 的 URL——相对路径 source 在 URL 方式下无法解析。
 
@@ -118,6 +119,8 @@ plugin **钉了 `version`（语义化版本）**。这意味着：
     ├── dl-mysql-design/
     │   └── SKILL.md
     ├── dl-work-daily-report/
+    │   └── SKILL.md
+    ├── dl-api-doc-for-frontend/
     │   └── SKILL.md
     └── dl-nestjs-starter/
         ├── SKILL.md
