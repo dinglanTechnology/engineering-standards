@@ -1,0 +1,39 @@
+{
+  "name": "engineering-standards",
+  "version": "1.2.0",
+  "description": "DingLan团队研发标准合集：Node.js 命名规范、MySQL 设计规范（Prisma-first）、NestJS 11 后端脚手架、工作日报生成、前端联调接口文档生成。写代码、搭项目、整理日报或出接口文档时自动按团队规范执行。",
+  "author": {
+    "name": "DingLan Technology"
+  },
+  "homepage": "https://github.com/dinglanTechnology/engineering-standards",
+  "repository": "https://github.com/dinglanTechnology/engineering-standards",
+  "license": "MIT",
+  "keywords": [
+    "standards",
+    "conventions",
+    "naming",
+    "mysql",
+    "prisma",
+    "nestjs",
+    "scaffold",
+    "daily-report",
+    "api-doc"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "DingLan研发标准",
+    "shortDescription": "DingLan 团队研发标准合集",
+    "longDescription": "DingLan 团队研发标准合集：Node.js 命名规范、MySQL 设计规范（Prisma-first）、NestJS 11 后端脚手架、工作日报生成、前端联调接口文档生成。",
+    "developerName": "DingLan Technology",
+    "category": "Developer Tools",
+    "capabilities": [
+      "Read",
+      "Write"
+    ],
+    "websiteURL": "https://github.com/dinglanTechnology/engineering-standards",
+    "defaultPrompt": [
+      "按 DingLan 团队规范审查这个项目的代码结构和命名。",
+      "按 DingLan 团队规范为这个 NestJS 模块生成前端联调文档。"
+    ]
+  }
+}

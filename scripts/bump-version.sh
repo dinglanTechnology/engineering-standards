@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# 一次性把版本号同步到全部 4 个清单文件（Claude 两份 + Cursor 两份）。
+# 一次性把版本号同步到全部 5 个清单文件（Claude 两份 + Cursor 两份 + Codex 一份）。
 # 用法: scripts/bump-version.sh 1.2.0
 set -euo pipefail
 
@@ -22,6 +22,7 @@ FILES=(
   ".claude-plugin/marketplace.json"
   ".cursor-plugin/plugin.json"
   ".cursor-plugin/marketplace.json"
+  ".codex-plugin/plugin.json"
 )
 
 for rel in "${FILES[@]}"; do
@@ -44,4 +45,4 @@ PY
   echo "  ✓ $rel -> $NEW"
 done
 
-echo "全部 4 个清单已更新到 v$NEW。记得提交并推送，用户侧再 /plugin update。"
+echo "全部 5 个清单已更新到 v$NEW。记得提交并推送，用户侧再更新 plugin。"

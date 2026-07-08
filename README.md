@@ -5,7 +5,7 @@
 - **规范** —— 约束「代码该怎么写」的横切约定（命名、SQL、API 设计……）
 - **脚手架** —— 直接生成符合团队风格的项目骨架与生产级基础设施
 
-整个仓库打包成**一个 plugin**（`engineering-standards`），内含多个 [skill](https://docs.claude.com/en/docs/agents-and-tools/agent-skills/overview)。一条命令装齐，安装后 AI 写代码或搭项目时会自动遵循 / 套用。**同时兼容 Claude Code 和 Cursor**（两边共用同一份 `skills/`，各自一份清单）。
+整个仓库打包成**一个 plugin**（`engineering-standards`），内含多个 [skill](https://docs.claude.com/en/docs/agents-and-tools/agent-skills/overview)。一条命令装齐，安装后 AI 写代码或搭项目时会自动遵循 / 套用。**同时兼容 Claude Code、Cursor 和 Codex**（三边共用同一份 `skills/`，Claude / Cursor / Codex 各自一份清单）。
 
 ## 包含的 skill
 
@@ -47,6 +47,23 @@ Cursor 用同一套 plugin / skill 规范，清单放在 [`​.cursor-plugin/`](
 
 安装后 skill 同样按需自动触发。团队可由管理员在 dashboard 里把它设为「必装」推给所有人。
 
+## 安装（Codex）
+
+Codex 走 plugin marketplace 安装。本仓库仍只维护同一份 `skills/`，Codex 通过 [`.codex-plugin/plugin.json`](./.codex-plugin/plugin.json) 暴露这些 skill：
+
+```bash
+codex plugin marketplace add dinglanTechnology/engineering-standards
+```
+
+然后在 Codex 插件目录安装：
+
+1. 打开 Codex。
+2. CLI 输入 `/plugins`；App 里打开 Plugins。
+3. 选择 `DingLan` marketplace。
+4. 打开 `engineering-standards`，点击 `Install plugin`。
+
+完整说明见 [`.codex/INSTALL.md`](./.codex/INSTALL.md)。
+
 ---
 
 ### 为什么是「一个 plugin 装全部」而不是「按需单装」
@@ -69,20 +86,28 @@ Cursor 用同一套 plugin / skill 规范，清单放在 [`​.cursor-plugin/`](
 plugin **钉了 `version`（语义化版本）**。这意味着：
 
 - 用户**只有在 version 号变化时**才会收到更新——日常提交（改错别字、调文档）不会惊动已安装用户。
-- 发布新版的流程：改完内容（含新增 skill）→ 用脚本把 **4 个清单文件**的 `version` 一次性同步 bump → 提交推送：
+- 发布新版的流程：改完内容（含新增 skill）→ 用脚本把 **5 个清单文件**的 `version` 一次性同步 bump → 提交推送：
 
   ```bash
-  scripts/bump-version.sh 1.1.0   # 一条命令改全 4 份（Claude 两份 + Cursor 两份）
+  scripts/bump-version.sh 1.1.0   # 一条命令改全 5 份（Claude 两份 + Cursor 两份 + Codex 一份）
   ```
 
-  脚本会校验 `X.Y.Z` 格式、只动 `version` 字段、不破坏其它内容。涉及的 4 个文件：
-  [`.claude-plugin/plugin.json`](./.claude-plugin/plugin.json)、[`.claude-plugin/marketplace.json`](./.claude-plugin/marketplace.json)、[`.cursor-plugin/plugin.json`](./.cursor-plugin/plugin.json)、[`.cursor-plugin/marketplace.json`](./.cursor-plugin/marketplace.json)。
+  脚本会校验 `X.Y.Z` 格式、只动 `version` 字段、不破坏其它内容。涉及的 5 个文件：
+  [`.claude-plugin/plugin.json`](./.claude-plugin/plugin.json)、[`.claude-plugin/marketplace.json`](./.claude-plugin/marketplace.json)、[`.cursor-plugin/plugin.json`](./.cursor-plugin/plugin.json)、[`.cursor-plugin/marketplace.json`](./.cursor-plugin/marketplace.json)、[`.codex-plugin/plugin.json`](./.codex-plugin/plugin.json)。
 - 用户侧更新：
 
   ```bash
   /plugin marketplace update dinglan                  # 刷新本地 marketplace 目录册
   /plugin update engineering-standards@dinglan        # 升级到新版
   ```
+
+- Codex 用户侧更新：
+
+  ```bash
+  codex plugin marketplace upgrade dinglan            # 刷新 Codex marketplace
+  ```
+
+  然后在 `/plugins` 里更新或重装 `engineering-standards`。
 
 > 备选策略：去掉所有 `version` 字段，则「每次 commit = 新版本」自动推送给全员。对团队标准而言**不推荐**——会让每次小改动都打扰大家。当前采用钉版本的可控方案。
 
@@ -113,7 +138,14 @@ plugin **钉了 `version`（语义化版本）**。这意味着：
 ├── .cursor-plugin/               ← Cursor 清单（与上面一一对应，内容镜像）
 │   ├── plugin.json
 │   └── marketplace.json
-└── skills/                       ← 两边共用同一份；一个 skill = 一个目录
+├── .codex/
+│   └── INSTALL.md                ← Codex plugin 安装说明
+├── .codex-plugin/
+│   └── plugin.json               ← Codex plugin 清单，"skills": "./skills/" 带出全部
+├── .agents/
+│   └── plugins/
+│       └── marketplace.json      ← Codex marketplace 目录册，只列这一个 plugin
+└── skills/                       ← 三边共用同一份；一个 skill = 一个目录
     ├── dl-naming-conventions/
     │   └── SKILL.md
     ├── dl-mysql-design/
@@ -128,7 +160,7 @@ plugin **钉了 `version`（语义化版本）**。这意味着：
         └── assets/               ← 可直接复制的模板文件
 ```
 
-整个仓库就是 plugin 本身：`.claude-plugin/`（Claude Code）和 `.cursor-plugin/`（Cursor）各放一份清单，两者内容镜像、用 `source: "./"` 指向仓库根；`skills/` 是真正的内容，两边共用，只存一份。
+整个仓库就是 plugin 本身：`.claude-plugin/`（Claude Code）、`.cursor-plugin/`（Cursor）和 `.codex-plugin/`（Codex）各放一份清单；`skills/` 是真正的内容，Claude Code / Cursor / Codex 共用，只存一份。
 
 ---
 
@@ -147,8 +179,10 @@ plugin **钉了 `version`（语义化版本）**。这意味着：
    ```
 
 3. 在本 README 的"包含的 skill"表格里登记（注明类型：规范 / 脚手架）。
-4. bump 版本：`scripts/bump-version.sh <新版本>`（一次改全 4 个清单，见上方「版本与更新」）。
+4. bump 版本：`scripts/bump-version.sh <新版本>`（一次改全 5 个清单，见上方「版本与更新」）。
 5. 提 PR。老用户更新后即可拿到新 skill（无需改任何清单结构，`skills/` 会自动并入）。
+
+Codex 用户升级 marketplace/plugin 后即可拿到新增 skill；如当前线程没有刷新，开新线程或重启 Codex。
 
 `description` 的写法很关键——它是 Claude 判断"要不要用这个 skill"的唯一依据。务必包含：
 - 这个 skill**适用于什么场景**（具体关键词，比如"写 SQL"、"搭 NestJS 项目"）
